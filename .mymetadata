@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="sxeqj"
+  id="myeclipse.1369810096937"
+  context-root="/sxeqj"
+  j2ee-spec="5.0"
+  archive="sxeqj.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 指定Struts 2默认的ObjectFactory Bean - 交给Spring管理 -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+
+	<constant name="struts.devMode" value="true" />
+	<!--
+		是否是开发模式
+	-->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!--
+		解决中文问题
+	-->
+	<constant name="struts.multipart.maxSize" value="20971520000" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<action name="*_*" class="com.dview.sxeq.action.{1}Action"
+			method="{2}">
+			
+			<result name="userDeleteSuccess" type="redirectAction">User_userList</result>
+			<result name="addUserSuccess" type="redirectAction">User_userList</result>
+			<result name="getAddUserjsp">/jsp/user/addUser.jsp</result>
+			<result name="userList">/jsp/user/userList.jsp</result>
+			<result name="login_fail">/login.jsp</result>
+			<result name="login_success" type="redirectAction">User_userList</result>
+			
+			<result name="getAddRolejsp">/jsp/role/addRole.jsp</result>
+			<result name="roleList">/jsp/role/roleList.jsp</result>
+			<result name="roleDeleteSuccess" type="redirectAction">Role_roleList</result>
+			<result name="addRoleSuccess" type="redirectAction">Role_roleList</result>
+			
+			<result name="rightList">/jsp/right/rightList.jsp</result>
+		</action>
+	</package>
+	
+	<package name="async" namespace="/async" extends="json-default">
+		
+		<action name="*" class="com.dview.sxeq.action.AsyncAction" method="{1}">
+			<result name="success" type="json" >
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+	
+	</package>
+</struts>
