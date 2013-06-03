@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,6 +55,7 @@ public class UserManagerImpl implements UserManager {
 		
 		List<User> list = userDao.list("from User where loginId ='"+user.getLoginId()+"'");
 		if(list.size()>0 && toMD5(user.getPassword()).equals(list.get(0).getPassword())){
+			ServletActionContext.getRequest().getSession().setAttribute("user", list.get(0));
 			return "login_success";
 		}else{
 			return "login_fail";

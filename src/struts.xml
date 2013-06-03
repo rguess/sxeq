@@ -9,6 +9,7 @@
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 
 	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
 	<!--
 		是否是开发模式
 	-->
