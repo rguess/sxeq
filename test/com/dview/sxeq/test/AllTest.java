@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import oracle.net.aso.l;
-
 import org.junit.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dview.sxeq.dao.DepartmentDao;
+import com.dview.sxeq.dao.LogDao;
 import com.dview.sxeq.dao.RightDao;
 import com.dview.sxeq.dao.RoleDao;
 import com.dview.sxeq.dao.UserDao;
@@ -20,6 +19,7 @@ import com.dview.sxeq.model.Department;
 import com.dview.sxeq.model.Right;
 import com.dview.sxeq.model.Role;
 import com.dview.sxeq.model.User;
+import com.dview.sxeq.util.LogUtil;
 
 public class AllTest {
 
@@ -29,6 +29,7 @@ public class AllTest {
 	RightDao rightDao = context.getBean(RightDao.class);
 	RoleDao roleDao = context.getBean(RoleDao.class);
 	UserDao userDao = context.getBean(UserDao.class);
+	LogDao logDao = context.getBean(LogDao.class);
 
 	@Test
 	public void test01() {
@@ -136,7 +137,21 @@ public class AllTest {
 		}
 	}
 
+	@Test
+	public void test06(){
+		System.out.println(LogUtil.getLogContent("asdasd"));
+	}
 	
+	@Test
+	public void test07(){
+		logDao.delete(logDao.get(Long.valueOf("")));
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		System.out.println(LogUtil.getLogContent("userList"));
+	}
 	
 	
 	

@@ -44,7 +44,7 @@ body {
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
 							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="../LoginOutServlet">login
+								id="loginUsername"></a><a href="User_loginOut">login
 								out</a>
 						</p>
 						<ul class="nav">
@@ -75,7 +75,7 @@ body {
 								<a href="User_userList">用户列表</a>
 							</li>
 							<li>
-								<a href="User_addUser">添加员工</a>
+								<a href="User_addUser">添加用户</a>
 							</li>
 							<li class="nav-header">
 								角色管理

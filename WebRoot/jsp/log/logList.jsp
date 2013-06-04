@@ -31,8 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/updateUser.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/log.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -45,7 +44,7 @@ body {
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
 							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="../LoginOutServlet">login
+								id="loginUsername"></a><a href="User_loginOut">login
 								out</a>
 						</p>
 						<ul class="nav">
@@ -76,7 +75,7 @@ body {
 								<a href="User_userList">用户列表</a>
 							</li>
 							<li>
-								<a href="User_addUser">添加员工</a>
+								<a href="User_addUser">添加用户</a>
 							</li>
 							<li class="nav-header">
 								角色管理
@@ -106,61 +105,42 @@ body {
 				<!--/span-->
 				<div class="span9">
 					<div>
-						<span><a class="btn btn-success" href="User_addUser";>
-								添加用户 </a> </span>
+						<h3>日志信息</h3>
 					</div>
-					<br>
-					<br>
 					<div>
 						<table
 							class="table table-striped table-bordered table-condensed table-hover">
 							<tr>
 								<td>
-									姓名
+									操作人
 								</td>
 								<td>
-									登录名
+									内容
 								</td>
 								<td>
-									部门
+									操作时间
 								</td>
 								<td>
-									角色名
-								</td>
-								<td>
-									手机
-								</td>
-								<td>
-									邮箱
-								</td>
-								<td>
-									操作
+									备注
 								</td>
 							</tr>
 
-							<s:iterator value="#request.list" id="us">
+							<s:iterator value="#request.logs" id="log">
 								<tr>
 									<td>
-										<s:property value="#us.userName" />
+										<s:property value="#log.user.userName" />
 									</td>
 									<td>
-										<s:property value="#us.loginId" />
+										<s:property value="#log.content" />
 									</td>
 									<td>
-										<s:property value="#us.department.departmentName" />
+										<s:property value="#log.date" />
 									</td>
 									<td>
-										<s:property value="#us.role.roleName" />
+										<s:property value="#log.remark" />
 									</td>
 									<td>
-										<s:property value="#us.mobile" />
-									</td>
-									<td>
-										<s:property value="#us.email" />
-									</td>
-									<td>
-										<s:a href="User_deleteUser?id=%{#us.id}">删除</s:a>
-										<s:a href="#modal" data-toggle='modal' onclick="javascript:initModal(%{us.id})">修改</s:a>
+										<s:a href="Log_deleteLog?id=%{#log.id}">删除</s:a>
 									</td>
 								</tr>
 							</s:iterator>
@@ -172,127 +152,7 @@ body {
 			</div>
 			
 			<!--/row-->
-			<div id="moodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">
-						×
-					</button>
-					<h3 id="myModalLabel">
-						修改用户信息
-					</h3>
-				</div>
-				<div class="modal-body">
-					<div>
-						<form class="form-horizontal" action="async/getUserById" method="post"
-							id="staffform" enctype="multipart/form-data">
-							<input type="hidden" id="MUserId" name="user.id">
-							<div class="control-group">
-								<label class="control-label" for="MUserName">
-									姓名
-								</label>
-								<div class="controls">
-									<input type="text" id="MUserName" name="user.userName">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="MloginId">
-									登录名
-								</label>
-								<div class="controls">
-									<input type="text" id="MloginId" name="user.loginId"
-										readonly="readonly">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mpassword">
-									登录密码
-								</label>
-								<div class="controls">
-									<input type="password" id="Mpassword" name="user.password"
-										placeholder="密码">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mrepassword">
-									重复密码
-								</label>
-								<div class="controls">
-									<input type="password" id="Mrepassword" name="repassword"
-										placeholder="重复密码">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mdepartment">
-									部门
-								</label>
-								<div class="controls">
-									<select id="Mdepartment" name="departmentName">
-										<option>
-											研发部
-										</option>
-										<option>
-											产品部
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mrole">
-									角色
-								</label>
-								<div class="controls">
-									<select id="Mrole" name="roleName">
-										<option>
-											超级管理员
-										</option>
-										<option>
-											普通管理员
-										</option>
-										<option>
-											业务管理员
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mphone">
-									联系方式(手机)
-								</label>
-								<div class="controls">
-									<input type="text" id="Mphone" name="user.mobile"
-										placeholder="phone">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Memail">
-									联系方式(手机)
-								</label>
-								<div class="controls">
-									<input type="text" id="Memail" name="user.email"
-										placeholder="email">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">
-						Close
-					</button>
-					<button class="btn btn-primary" id="staffsubmit">
-						Save changes
-					</button>
-				</div>
-			</div>
 			<!--/span-->
-		</div>
 		<hr>
 		<footer>
 		<p>

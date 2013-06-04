@@ -62,6 +62,7 @@ public class UserManagerImpl implements UserManager {
 		}
 	}
 
+	
 	public static String toMD5(String str) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");

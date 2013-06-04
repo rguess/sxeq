@@ -46,8 +46,8 @@ body {
 					<a class="brand" href="#">管理子系统</a>
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
-							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="../LoginOutServlet">login
+							欢迎，<s:property value="#session.user.userName"/>&nbsp&nbsp&nbsp
+							<a href="User_loginOut">login
 								out</a>
 						</p>
 						<ul class="nav">
@@ -78,7 +78,7 @@ body {
 								<a href="User_userList">用户列表</a>
 							</li>
 							<li>
-								<a href="User_addUser">添加员工</a>
+								<a href="User_addUser">添加用户</a>
 							</li>
 							<li class="nav-header">
 								角色管理

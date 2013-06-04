@@ -35,6 +35,15 @@ public class UserAction extends ActionSupport {
 		}
 		return result;
 	}
+	
+	public String loginOut(){
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.getSession().removeAttribute("user");
+		request.removeAttribute("msg");
+		return "loginOutSuccess";
+		
+	}
 
 	public String userList() {
 		ServletActionContext.getRequest().setAttribute("list",

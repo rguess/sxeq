@@ -20,7 +20,8 @@
 	<aop:config proxy-target-class="true" />
 	<bean id="logService" class="com.dview.sxeq.aop.LogService">
 	
-	</bean>
+	</bean><!--
+
 
 	<aop:config>
 		<aop:aspect id="log" ref="logService">
@@ -29,8 +30,8 @@
 			<aop:after method="logAll"  pointcut-ref="logPointCut" />
 		</aop:aspect>
 	</aop:config>
-
-	<bean
+	
+	--><bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<value>classpath:jdbc.properties</value>
