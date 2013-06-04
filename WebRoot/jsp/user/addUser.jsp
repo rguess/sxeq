@@ -143,8 +143,9 @@ body {
 							<label class="control-label" for="department">部门</label>
 							<div class="controls">
 								<select id="department" name="departmentName">
-								<option>研发部</option>
-								<option>产品部</option>
+								<s:iterator value="#request.departments" id="department">
+									<option><s:property value="#department.departmentName"/></option>
+								</s:iterator>
 								</select>
 							</div>
 						</div>
@@ -153,9 +154,9 @@ body {
 							<label class="control-label" for="role">角色</label>
 							<div class="controls">
 								<select id="role" name="roleName">
-								<option>超级管理员</option>
-								<option>普通管理员</option>
-								<option>业务管理员</option>
+								<s:iterator value="#request.roles" id="role">
+									<option><s:property value="#role.roleName"/> </option>
+								</s:iterator>
 								</select>
 							</div>
 						</div>

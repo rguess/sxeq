@@ -14,9 +14,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class LogAction extends ActionSupport {
 
 	private LogManager logManager;
-	
+
 	private Long id;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -33,17 +33,19 @@ public class LogAction extends ActionSupport {
 	public void setLogManager(LogManager logManager) {
 		this.logManager = logManager;
 	}
-	
-	public String logList(){
-		
-		ServletActionContext.getRequest().setAttribute("logs", logManager.logList());
+
+	public String logList() {
+
+		long count = logManager.count(null, null);
+		ServletActionContext.getRequest().setAttribute("logs",
+				logManager.ListForPage(0, 5, null, null));
 		return "logList";
 	}
-	
-	public String deleteLog(){
-		
+
+	public String deleteLog() {
+
 		logManager.deleteLog(id);
 		return "logDeleteSuccess";
 	}
-	
+
 }

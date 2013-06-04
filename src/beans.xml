@@ -16,21 +16,20 @@
 		使用annotation模式
 	-->
 	<context:component-scan base-package="com.dview.sxeq" />
-	
+
 	<aop:config proxy-target-class="true" />
 	<bean id="logService" class="com.dview.sxeq.aop.LogService">
-	
-	</bean><!--
 
+	</bean>
 
-	<aop:config>
+	<!--<aop:config>
 		<aop:aspect id="log" ref="logService">
 			<aop:pointcut expression="execution(* com.dview.sxeq.service.impl.*.*(..))"
 				id="logPointCut" />
-			<aop:after method="logAll"  pointcut-ref="logPointCut" />
+			<aop:after method="logAll" pointcut-ref="logPointCut" />
 		</aop:aspect>
 	</aop:config>
-	
+
 	--><bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -77,7 +76,8 @@
 					org.hibernate.dialect.Oracle10gDialect
 				</prop>
 				<!--<prop key="hibernate.show_sql">true</prop>
-				--><prop key="hibernate.hbm2ddl.auto">update</prop>
+				-->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.jdbc.fetch_size">50</prop>
 			</props>
 		</property>

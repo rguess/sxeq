@@ -9,7 +9,7 @@
 <!Doctype html>
 <html>
 	<head>
-		<title>用户列表</title>
+		<title>日志列表</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -140,12 +140,22 @@ body {
 										<s:property value="#log.remark" />
 									</td>
 									<td>
-										<s:a href="Log_deleteLog?id=%{#log.id}">删除</s:a>
+										<s:a href="Log_deleteLog?id=%{#log.id}" onclick="javascript:del();">删除</s:a>
 									</td>
 								</tr>
 							</s:iterator>
-
 						</table>
+							<div class="pagination pagination-centered">
+							  <ul>
+							    <li><a href="#">Prev</a></li>
+							    <li><a href="#">1</a></li>
+							    <li><a href="#">2</a></li>
+							    <li><a href="#">3</a></li>
+							    <li><a href="#">4</a></li>
+							    <li><a href="#">5</a></li>
+							    <li><a href="#">Next</a></li>
+							  </ul>
+							</div>
 					</div>
 				</div>
 				<!--/span-->

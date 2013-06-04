@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.dview.sxeq.model.User;
+import com.dview.sxeq.service.DepartmentManager;
+import com.dview.sxeq.service.RoleManager;
 import com.dview.sxeq.service.UserManager;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,6 +21,10 @@ public class UserAction extends ActionSupport {
 	private User user;
 
 	private UserManager userManager;
+	
+	private DepartmentManager departmentManager;
+	
+	private RoleManager roleManager;
 
 	private String departmentName;
 
@@ -55,6 +61,8 @@ public class UserAction extends ActionSupport {
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		if ("GET".equals(request.getMethod())) {
+			request.setAttribute("departments", departmentManager.departmentList());
+			request.setAttribute("roles", roleManager.roleList());
 			return "getAddUserjsp";
 		} else {
 			userManager.addUser(user, departmentName, roleName);
@@ -112,5 +120,23 @@ public class UserAction extends ActionSupport {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public DepartmentManager getDepartmentManager() {
+		return departmentManager;
+	}
+
+	@Autowired
+	public void setDepartmentManager(DepartmentManager departmentManager) {
+		this.departmentManager = departmentManager;
+	}
+
+	public RoleManager getRoleManager() {
+		return roleManager;
+	}
+
+	@Autowired
+	public void setRoleManager(RoleManager roleManager) {
+		this.roleManager = roleManager;
 	}
 }

@@ -16,6 +16,7 @@ import com.dview.sxeq.dao.RightDao;
 import com.dview.sxeq.dao.RoleDao;
 import com.dview.sxeq.dao.UserDao;
 import com.dview.sxeq.model.Department;
+import com.dview.sxeq.model.Log;
 import com.dview.sxeq.model.Right;
 import com.dview.sxeq.model.Role;
 import com.dview.sxeq.model.User;
@@ -57,9 +58,9 @@ public class AllTest {
 	@Test
 	public void test03() {
 		Right right = new Right();
-		right.setRightName("查看日志");
-		right.setRightStr("/Log_logList");
-		right.setDescription("查询日志列表权限");
+		right.setRightName("删除日志");
+		right.setRightStr("/Log_deleteLog");
+		right.setDescription("删除日志权限");
 		rightDao.add(right);
 	}
 	
@@ -147,11 +148,27 @@ public class AllTest {
 		logDao.delete(logDao.get(Long.valueOf("")));
 	}
 	
+	@Test
+	public void test08(){
+		
+		String str = "userList.action";
+		System.out.println(str.lastIndexOf("."));
+	}
+	
+	@Test
+	public void test09(){
+		List<Log> list = logDao.getListForPage(0, 5, null, null);
+//		System.out.println(logDao.count(null, null));
+		System.out.println(list.size());
+	}
+	
 	
 	
 	public static void main(String[] args) {
 		System.out.println(LogUtil.getLogContent("userList"));
 	}
+	
+	
 	
 	
 	

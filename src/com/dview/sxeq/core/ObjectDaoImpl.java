@@ -12,7 +12,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
@@ -101,7 +100,6 @@ public class ObjectDaoImpl<T, PK extends Serializable>
 				} catch (NoSuchFieldException e) {
 					e.printStackTrace();
 				}
-				crit.addOrder(Order.desc("id"));
 				crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 				crit.setFirstResult(offset);
 				crit.setMaxResults(length);
