@@ -27,4 +27,5 @@ public interface ObjectDao<T,PK extends Serializable> {
 	public long count(final Map<String,String> eqProperties, final Map<String,String> likeProperties);
 	public List<Object[]> queryBySql(String sql);
 	public int countQueryBySql(String sql);
+	public List<T> getListByHql(String queryStr,int offset,int length);
 }

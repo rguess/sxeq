@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -228,6 +229,16 @@ public class ObjectDaoImpl<T, PK extends Serializable>
 		String temp = query.list().get(0).toString();
 		
 		return Integer.parseInt(temp);
+	}
+
+	public List<T> getListByHql(String queryStr, int offset, int length) {
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Query   query   =   session.createQuery(queryStr); 
+		query.setFirstResult(offset); 
+		query.setMaxResults(length); 
+		List<T> list= (List<T>)query.list();
+		session.close();
+		return list;
 	}
 	
 

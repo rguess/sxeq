@@ -12,6 +12,7 @@ import com.dview.sxeq.model.Department;
 import com.dview.sxeq.model.Role;
 import com.dview.sxeq.model.User;
 import com.dview.sxeq.service.DepartmentManager;
+import com.dview.sxeq.service.LogManager;
 import com.dview.sxeq.service.RightManager;
 import com.dview.sxeq.service.RoleManager;
 import com.dview.sxeq.service.UserManager;
@@ -39,6 +40,24 @@ public class AsyncAction extends ActionSupport {
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 
 	private RightManager rightManager;
+	
+	private LogManager logManager;
+	
+	private int offset;
+	
+	private int length;
+	
+	public String getLogCount(){
+		dataMap.clear();
+		dataMap.put("count", logManager.count(null, null));
+		return "success";
+	}	
+	
+	public String getLogs(){
+		dataMap.clear();
+		dataMap.put("logs", logManager.listForPageByHql("from Log",offset,length));
+		return "success";
+	}
 	
 	public String getUserById() {
 		
@@ -151,6 +170,31 @@ public class AsyncAction extends ActionSupport {
 	@Autowired
 	public void setRoleManager(RoleManager roleManager) {
 		this.roleManager = roleManager;
+	}
+
+	public LogManager getLogManager() {
+		return logManager;
+	}
+
+	@Autowired
+	public void setLogManager(LogManager logManager) {
+		this.logManager = logManager;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
 	}
 	
 }

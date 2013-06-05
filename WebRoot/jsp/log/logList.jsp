@@ -20,6 +20,7 @@
 		<link href="<%=basePath%>/css/bootstrap.css" rel="stylesheet">
 		<link href="<%=basePath%>/css/bootstrap-responsive.css"
 			rel="stylesheet">
+		<link href="<%=basePath%>/css/pagination.css" rel="stylesheet">
 		<style type="text/css">
 body {
 	padding-top: 60px;
@@ -31,6 +32,8 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript"
+			src="<%=basePath%>/js/jquery.pagination.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/log.js"></script>
 	</head>
 	<body>
@@ -44,8 +47,7 @@ body {
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
 							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="User_loginOut">login
-								out</a>
+								id="loginUsername"></a><a href="User_loginOut">login out</a>
 						</p>
 						<ul class="nav">
 							<li class="active">
@@ -95,7 +97,7 @@ body {
 							<li class="nav-header">
 								日志管理
 							</li>
-							<li  class="active">
+							<li class="active">
 								<a href="Log_logList">日志信息列表</a>
 							</li>
 						</ul>
@@ -105,70 +107,51 @@ body {
 				<!--/span-->
 				<div class="span9">
 					<div>
-						<h3>日志信息</h3>
+						<h3>
+							日志信息
+						</h3>
 					</div>
 					<div>
 						<table
 							class="table table-striped table-bordered table-condensed table-hover">
-							<tr>
-								<td>
-									操作人
-								</td>
-								<td>
-									内容
-								</td>
-								<td>
-									操作时间
-								</td>
-								<td>
-									备注
-								</td>
-							</tr>
-
-							<s:iterator value="#request.logs" id="log">
+							<thead>
 								<tr>
-									<td>
-										<s:property value="#log.user.userName" />
-									</td>
-									<td>
-										<s:property value="#log.content" />
-									</td>
-									<td>
-										<s:property value="#log.date" />
-									</td>
-									<td>
-										<s:property value="#log.remark" />
-									</td>
-									<td>
-										<s:a href="Log_deleteLog?id=%{#log.id}" onclick="javascript:del();">删除</s:a>
-									</td>
+									<th>
+										操作人
+									</th>
+									<th>
+										内容
+									</th>
+									<th>
+										操作时间
+									</th>
+									<th>
+										备注
+									</th>
+									<th>
+										操作
+									</th>
 								</tr>
-							</s:iterator>
+							</thead>
+							<tbody id="logContent">
+
+							</tbody>
 						</table>
-							<div class="pagination pagination-centered">
-							  <ul>
-							    <li><a href="#">Prev</a></li>
-							    <li><a href="#">1</a></li>
-							    <li><a href="#">2</a></li>
-							    <li><a href="#">3</a></li>
-							    <li><a href="#">4</a></li>
-							    <li><a href="#">5</a></li>
-							    <li><a href="#">Next</a></li>
-							  </ul>
-							</div>
+						<div id="Pagination" class="pagination"
+							style="float: right; margin-right: 100px"></div>
 					</div>
 				</div>
 				<!--/span-->
 			</div>
-			
+
 			<!--/row-->
 			<!--/span-->
-		<hr>
-		<footer>
-		<p>
-			© Company 2012
-		</p>
-		</footer>
+			<hr>
+			<footer>
+			<p>
+				© Company 2012
+			</p>
+			</footer>
 		</div>
 	</body>
 </html>

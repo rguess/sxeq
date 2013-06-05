@@ -1,6 +1,5 @@
 package com.dview.sxeq.action;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -35,10 +34,6 @@ public class LogAction extends ActionSupport {
 	}
 
 	public String logList() {
-
-		long count = logManager.count(null, null);
-		ServletActionContext.getRequest().setAttribute("logs",
-				logManager.ListForPage(0, 5, null, null));
 		return "logList";
 	}
 

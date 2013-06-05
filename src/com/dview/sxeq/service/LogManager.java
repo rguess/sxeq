@@ -17,5 +17,7 @@ public interface LogManager {
 	
 	long count(final Map<String,String> equalCondition, final Map<String,String> likeCondition);
 	
+	List<Log> listForPageByHql(String queryStr,int offset,int length);
+	
 	
 }

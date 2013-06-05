@@ -31,6 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/addUser.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,8 +44,7 @@ body {
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
 							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="User_loginOut">login
-								out</a>
+								id="loginUsername"></a><a href="User_loginOut">login out</a>
 						</p>
 						<ul class="nav">
 							<li class="active">
@@ -104,99 +104,124 @@ body {
 				<!--/span-->
 				<div class="span9">
 					<div>
-					<h3>添加员工信息</h3>
-					<form class="form-horizontal" action="User_addUser" method="post"
-						id="userForm">
-						<div class="control-group">
-							<label class="control-label" for="staffName">姓名</label>
-							<div class="controls">
-								<input type="text" id="userName" name="user.userName"
-									placeholder="姓名" height="50px"><span
-									class="help-inline"></span>
+						<h3>
+							添加员工信息
+						</h3>
+						<form class="form-horizontal" action="User_addUser" method="post"
+							id="userForm" onsubmit="javascript:return formValidate();">
+							<div class="control-group">
+								<label class="control-label" for="staffName">
+									姓名
+								</label>
+								<div class="controls">
+									<input type="text" id="userName" name="user.userName"
+										placeholder="姓名" height="50px"
+										onblur="javascript:checkUserName(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="loginId">登录名</label>
-							<div class="controls">
-								<input type="text" id="loginId" name="user.loginId"
-									placeholder="loginId"><span
-									class="help-inline"></span>
+							<div class="control-group">
+								<label class="control-label" for="loginId">
+									登录名
+								</label>
+								<div class="controls">
+									<input type="text" id="loginId" name="user.loginId"
+										placeholder="loginId" onblur="javascript:checkLoginId(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="password">登录密码</label>
-							<div class="controls">
-								<input type="password" id="password" name="user.password"
-									placeholder="密码"><span
-									class="help-inline"></span>
+							<div class="control-group">
+								<label class="control-label" for="password">
+									登录密码
+								</label>
+								<div class="controls">
+									<input type="password" id="password" name="user.password"
+										placeholder="密码" onblur="javascript:checkPassword(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="repassword">重复密码</label>
-							<div class="controls">
-								<input type="password" id="repassword" name="repassword"
-									placeholder="重复密码"><span
-									class="help-inline"></span>
+							<div class="control-group">
+								<label class="control-label" for="repassword">
+									重复密码
+								</label>
+								<div class="controls">
+									<input type="password" id="repassword" name="repassword"
+										placeholder="重复密码" onblur="javascript:checkRePassword(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="department">部门</label>
-							<div class="controls">
-								<select id="department" name="departmentName">
-								<s:iterator value="#request.departments" id="department">
-									<option><s:property value="#department.departmentName"/></option>
-								</s:iterator>
-								</select>
+							<div class="control-group">
+								<label class="control-label" for="department">
+									部门
+								</label>
+								<div class="controls">
+									<select id="department" name="departmentName">
+										<s:iterator value="#request.departments" id="department">
+											<option>
+												<s:property value="#department.departmentName" />
+											</option>
+										</s:iterator>
+									</select>
+								</div>
 							</div>
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="role">角色</label>
-							<div class="controls">
-								<select id="role" name="roleName">
-								<s:iterator value="#request.roles" id="role">
-									<option><s:property value="#role.roleName"/> </option>
-								</s:iterator>
-								</select>
+
+							<div class="control-group">
+								<label class="control-label" for="role">
+									角色
+								</label>
+								<div class="controls">
+									<select id="role" name="roleName">
+										<s:iterator value="#request.roles" id="role">
+											<option>
+												<s:property value="#role.roleName" />
+											</option>
+										</s:iterator>
+									</select>
+								</div>
 							</div>
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="phone">联系方式(手机)</label>
-							<div class="controls">
-								<input type="text" id="phone" name="user.mobile" placeholder="phone"
-									><span
-									class="help-inline"></span>
+
+							<div class="control-group">
+								<label class="control-label" for="phone">
+									联系方式(手机)
+								</label>
+								<div class="controls">
+									<input type="text" id="phone" name="user.mobile"
+										placeholder="phone" onblur="javascript:checkPhone(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="email">邮箱</label>
-							<div class="controls">
-								<input type="text" id="email" name="user.email" placeholder="email"
-									><span
-									class="help-inline"></span>
+
+							<div class="control-group">
+								<label class="control-label" for="email">
+									邮箱
+								</label>
+								<div class="controls">
+									<input type="text" id="email" name="user.email"
+										placeholder="email" onblur="javascript:checkEmail(this);">
+									<span class="help-inline"></span>
+								</div>
 							</div>
-						</div>
-						
-						<div class="control-group">
-							<div class="controls">
-								<button type="submit" class="btn btn-primary " id="staffsubmit">提交</button>
+
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary " id="staffsubmit">
+										提交
+									</button>
+								</div>
 							</div>
-						</div>
-					</form>
-				</div>
+						</form>
+					</div>
 				</div>
 
-			<!--/span-->
-		</div>
-		<!--/row-->
-		<hr>
-		<footer>
-		<p>
-			© Company 2012
-		</p>
-		</footer>
+				<!--/span-->
+			</div>
+			<!--/row-->
+			<hr>
+			<footer>
+			<p>
+				© Company 2012
+			</p>
+			</footer>
 		</div>
 	</body>
 </html>

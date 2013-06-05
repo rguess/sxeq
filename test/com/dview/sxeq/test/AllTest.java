@@ -157,9 +157,12 @@ public class AllTest {
 	
 	@Test
 	public void test09(){
-		List<Log> list = logDao.getListForPage(0, 5, null, null);
+//		List<Log> list = logDao.getListForPage(0, 5, null, null);
 //		System.out.println(logDao.count(null, null));
+//		System.out.println(list.size());
+		List<Log> list = logDao.getListByHql("from Log", 10, 6);
 		System.out.println(list.size());
+		System.out.println(logDao.count(null, null));
 	}
 	
 	

@@ -46,4 +46,8 @@ public class LogManagerImpl implements LogManager {
 		return logDao.count(equalCondition, likeCondition);
 	}
 
+	public List<Log> listForPageByHql(String queryStr, int offset, int length) {
+		return logDao.getListByHql(queryStr, offset, length);
+	}
+
 }

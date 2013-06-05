@@ -70,6 +70,9 @@
 			<result name="success" type="json" >
 				<param name="root">dataMap</param>
 			</result>
+			<result name="noRight" type="json">
+				<param name="root">dataMap</param>
+			</result>
 		</action>
 	
 	</package>
