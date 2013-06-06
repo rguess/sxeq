@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.dview.sxeq.model.Department;
+import com.dview.sxeq.model.Right;
 import com.dview.sxeq.model.Role;
 import com.dview.sxeq.model.User;
 import com.dview.sxeq.service.DepartmentManager;
@@ -51,6 +53,33 @@ public class AsyncAction extends ActionSupport {
 	private int offset;
 	
 	private int length;
+	
+	private String rightStr;
+	
+	//通过权限字符串检查权限，true为拥有,false为没有拥有
+	public String checkRight(){
+		dataMap.clear();
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		boolean flag = false;
+		for(Right right : user.getRole().getRights()){
+			if(right.getRightStr().equals(rightStr)){
+				flag = true;
+				break;
+			}
+		}
+		dataMap.put("isRight", flag);
+		return "success";
+	}
+	
+	/*
+	 * 根据角色ID判断该角色是否被用户占用,true为占用,false为未占用
+	 */
+	public String checkRole(){
+		
+		dataMap.clear();
+		dataMap.put("is", userManager.getUserByRoleId(id));
+		return "success";
+	}
 	
 	/*
 	 * 根据ID删除日志
@@ -247,6 +276,14 @@ public class AsyncAction extends ActionSupport {
 
 	public void setOffset(int offset) {
 		this.offset = offset;
+	}
+
+	public String getRightStr() {
+		return rightStr;
+	}
+
+	public void setRightStr(String rightStr) {
+		this.rightStr = rightStr;
 	}
 
 	public int getLength() {

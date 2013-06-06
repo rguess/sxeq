@@ -31,6 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">

@@ -42,6 +42,7 @@
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/updateRole.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -162,7 +163,7 @@
 										</s:iterator>
 									</td>
 									<td>
-										<s:a href="Role_deleteRole?id=%{#role.id}">删除</s:a>
+										<s:a href="Role_deleteRole?id=%{#role.id}" onclick="javascript:return CheckRoleById(%{#role.id});">删除</s:a>
 										<s:a href="#myModal" data-toggle='modal' onclick="javascript:initModal(%{#role.id})">修改</s:a>
 									</td>
 								</tr>

@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 function deleteLog(id){
-	if(!window.confirm("您确认要删除此用户吗？")){
+	if(!window.confirm("您确认要删除此日志吗？")){
 		return false;
 	}else{
 		$.ajax({

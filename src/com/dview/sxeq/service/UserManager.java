@@ -15,4 +15,5 @@ public interface UserManager {
 	public User getUserById(Long id);
 	public boolean checkLoginIsExit(String loginId);
 	public void updateUser(User user,String departmentName,String roleName);
+	public boolean getUserByRoleId(Long id);
 }

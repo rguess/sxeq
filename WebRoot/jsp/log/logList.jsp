@@ -35,6 +35,7 @@ body {
 		<script type="text/javascript"
 			src="<%=basePath%>/js/jquery.pagination.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/log.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">

@@ -34,6 +34,7 @@ body {
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/department.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
 	

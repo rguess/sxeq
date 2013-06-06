@@ -180,6 +180,14 @@ public class AllTest {
 //		System.out.println(user.getRole().getRights().size());
 	}
 	
+	@Test
+	public void test12(){
+		List<User> list = userDao.list("from User");
+		for(User user : list){
+			System.out.println(user.getPassword());
+		}
+	}
+	
 	
 	
 	public static void main(String[] args) {

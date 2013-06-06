@@ -147,8 +147,20 @@ public class UserManagerImpl implements UserManager {
 		User u = userDao.get(user.getId());
 		if("######".equals(user.getPassword())){
 			user.setPassword(u.getPassword());
+		}else{
+			user.setPassword(toMD5(user.getPassword()));
 		}
 		user.setGenTime(u.getGenTime());
 		userDao.add(user);
+	}
+
+	public boolean getUserByRoleId(Long id) {
+		
+		List<User> list = userDao.list("from User where role.id = "+id+"");
+		if(list.size() == 0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 }
