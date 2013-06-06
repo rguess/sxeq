@@ -47,6 +47,7 @@ public class UserAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.getSession().removeAttribute("user");
 		request.removeAttribute("msg");
+		request.getSession().removeAttribute("msg");
 		return "loginOutSuccess";
 		
 	}
@@ -71,7 +72,7 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String updateUser(){
-		userManager.addUser(user, departmentName, roleName);
+		userManager.updateUser(user, departmentName, roleName);
 		return "addUserSuccess";
 	}
 

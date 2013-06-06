@@ -20,16 +20,29 @@
 	<constant name="struts.multipart.maxSize" value="20971520000" />
 
 	<package name="default" namespace="/" extends="struts-default">
-
+	
+		<interceptors>
+			<interceptor name="loginInter"
+				class="com.dview.sxeq.interceptor.LoginInterceptor">
+			</interceptor>
+			<interceptor name="rightInter"
+				class="com.dview.sxeq.interceptor.RightInterceptor">
+			</interceptor>
+		</interceptors>
+		
+		<global-results>
+			<result name="noRight">/noright.jsp</result>
+		</global-results>
+		
 		<action name="*_*" class="com.dview.sxeq.action.{1}Action"
 			method="{2}">
-			
 			<result name="userDeleteSuccess" type="redirectAction">User_userList</result>
 			<result name="addUserSuccess" type="redirectAction">User_userList</result>
 			<result name="getAddUserjsp">/jsp/user/addUser.jsp</result>
 			<result name="userList">/jsp/user/userList.jsp</result>
 			<result name="login_fail">/login.jsp</result>
 			<result name="login_success" type="redirectAction">User_userList</result>
+			<result name="loginOutSuccess" type="redirect">/login.jsp</result>
 			
 			<result name="getAddRolejsp">/jsp/role/addRole.jsp</result>
 			<result name="roleList">/jsp/role/roleList.jsp</result>
@@ -37,6 +50,21 @@
 			<result name="addRoleSuccess" type="redirectAction">Role_roleList</result>
 			
 			<result name="rightList">/jsp/right/rightList.jsp</result>
+			
+			<result name="logList">/jsp/log/logList.jsp</result>
+			<result name="logDeleteSuccess" type="redirectAction">Log_logList</result>
+			
+			<result name="deparList">/jsp/department/departmentList.jsp</result>
+			<result name="getAddDepartmentjsp">/jsp/department/addDepartment.jsp</result>
+			<result name="addDepartmentSuccess" type="redirectAction">Department_departmentList</result>
+			
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="loginInter">
+				<param name="excludeMethods">login,loginOut</param>
+			</interceptor-ref>
+			<interceptor-ref name="rightInter" >
+				<param name="excludeMethods">login,loginOut</param>
+			</interceptor-ref>
 		</action>
 	</package>
 	
@@ -44,6 +72,9 @@
 		
 		<action name="*" class="com.dview.sxeq.action.AsyncAction" method="{1}">
 			<result name="success" type="json" >
+				<param name="root">dataMap</param>
+			</result>
+			<result name="noRight" type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>

@@ -33,10 +33,10 @@ body {
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/userList.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/department.js"></script>
 	</head>
 	<body>
-
+	
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
@@ -75,7 +75,7 @@ body {
 							<li class="nav-header">
 								用户管理
 							</li>
-							<li class="active">
+							<li>
 								<a href="User_userList">用户列表</a>
 							</li>
 							<li>
@@ -99,7 +99,7 @@ body {
 							<li class="nav-header">
 								部门管理
 							</li>
-							<li>
+							<li class="active">
 								<a href="Department_departmentList">部门列表</a>
 							</li>
 							<li>
@@ -127,54 +127,29 @@ body {
 						<table
 							class="table table-striped table-bordered table-condensed table-hover">
 							<thead>
-								<tr>
-									<th>
-										姓名
-									</th>
-									<th>
-										登录名
-									</th>
-									<th>
-										部门
-									</th>
-									<th>
-										角色名
-									</th>
-									<th>
-										手机
-									</th>
-									<th>
-										邮箱
-									</th>
-									<th>
-										操作
-									</th>
-								</tr>
+							<tr>
+								<th>
+									部门名称
+								</th>
+								<th>
+									部门描述
+								</th>
+								<th>
+									操作
+								</th>
+							</tr>
 							</thead>
-							<s:iterator value="#request.list" id="us">
+							<s:iterator value="#request.departments" id="department">
 								<tr>
 									<td>
-										<s:property value="#us.userName" />
+										<s:property value="#department.departmentName" />
 									</td>
 									<td>
-										<s:property value="#us.loginId" />
+										<s:property value="#department.desciption" />
 									</td>
 									<td>
-										<s:property value="#us.department.departmentName" />
-									</td>
-									<td>
-										<s:property value="#us.role.roleName" />
-									</td>
-									<td>
-										<s:property value="#us.mobile" />
-									</td>
-									<td>
-										<s:property value="#us.email" />
-									</td>
-									<td>
-										<s:a href="User_deleteUser?id=%{#us.id}">删除</s:a>
-										<s:a href="#myModal" data-toggle='modal'
-											onclick="initModal(%{#us.id})">修改</s:a>
+										<s:a href="Department_deleteDepartment?id=%{#department.id}">删除</s:a>
+										<s:a href="#myModal" data-toggle='modal' onclick="initModal(%{#department.id})">修改</s:a>
 									</td>
 								</tr>
 							</s:iterator>
@@ -184,10 +159,9 @@ body {
 				</div>
 				<!--/span-->
 			</div>
-
+			
 			<!--/row-->
-			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">
@@ -199,16 +173,15 @@ body {
 				</div>
 				<div class="modal-body">
 					<div>
-						<form class="form-horizontal" action="User_updateUser"
-							method="post" id="staffform" enctype="multipart/form-data"
-							name="userForm" onsubmit="return formValidate();">
+						<form class="form-horizontal" action="User_updateUser" method="post"
+							id="staffform" enctype="multipart/form-data" name="userForm">
 							<input type="hidden" id="MUserId" name="user.id">
 							<div class="control-group">
 								<label class="control-label" for="MUserName">
 									姓名
 								</label>
 								<div class="controls">
-									<input type="text" id="MUserName" name="user.userName" onblur="javascript:checkUserName(this);">
+									<input type="text" id="MUserName" name="user.userName">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -228,7 +201,7 @@ body {
 								</label>
 								<div class="controls">
 									<input type="password" id="Mpassword" name="user.password"
-										placeholder="密码" onblur="javascript:checkPassword(this);"s>
+										placeholder="密码">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -238,7 +211,7 @@ body {
 								</label>
 								<div class="controls">
 									<input type="password" id="Mrepassword" name="repassword"
-										placeholder="重复密码" onblur="javascript:checkRePassword(this);">
+										placeholder="重复密码">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -248,7 +221,7 @@ body {
 								</label>
 								<div class="controls">
 									<select id="Mdepartment" name="departmentName">
-
+										
 									</select>
 								</div>
 							</div>
@@ -258,7 +231,7 @@ body {
 								</label>
 								<div class="controls">
 									<select id="Mrole" name="roleName">
-
+										
 									</select>
 								</div>
 							</div>
@@ -268,7 +241,7 @@ body {
 								</label>
 								<div class="controls">
 									<input type="text" id="Mphone" name="user.mobile"
-										placeholder="phone" onblur="javascript:checkPhone(this);">
+										placeholder="phone">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -278,7 +251,7 @@ body {
 								</label>
 								<div class="controls">
 									<input type="text" id="Memail" name="user.email"
-										placeholder="email" onblur="javascript:checkEmail(this);">
+										placeholder="email">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -287,11 +260,10 @@ body {
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">
-						关闭
+						Close
 					</button>
-					<button class="btn btn-primary" id="staffsubmit"
-						onclick="javascript:userFormSubmit();">
-						保存
+					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:document.userForm.submit();">
+						Save changes
 					</button>
 				</div>
 			</div>

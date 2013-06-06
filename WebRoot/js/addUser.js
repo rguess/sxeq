@@ -19,9 +19,10 @@ function formValidate() {
 		$("#loginId").parent().parent().addClass("error");
 		$("#loginId").next().html("账号必须是以字母开头，长度在5到15之间");
 		flag = false;
-	}else if(!checkLoginIdIsExist($("#loginId").val())){
+	}else if(checkLoginIdIsExist($("#loginId").val())){
 		$("#loginId").parent().parent().addClass("error");
 		$("#loginId").next().html("该登陆名已存在");
+		flag = false;
 	}else{
 		$("#loginId").parent().parent().removeClass("error");
 		$("#loginId").next().html("");
@@ -88,7 +89,7 @@ function checkLoginId(object){
 	if(!reg.test($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("账号必须是以字母开头，长度在5到15之间");
-	}else if(!checkLoginIdIsExist($(object).val())){
+	}else if(checkLoginIdIsExist($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("该登陆名已存在");
 	}else{
@@ -137,15 +138,12 @@ function checkPhone(object) {
 function checkLoginIdIsExist(loginId) {
 	var flag = true;
 	$.ajax({
-		url : '../rest/staff/loginIdIsExist/'+loginId,
+		url : 'async/loginIdIsExit?user.loginId='+loginId,
 		type : 'GET',
 		async : false,
 		success : function(data) {
-			if(data =="no"){
-				flag = true;
-			}else {
-				flag = false;
-			}
+			var is = data.isExit;
+			flag = is;
 		}
 	});
 	return flag;

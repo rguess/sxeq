@@ -3,7 +3,6 @@ package com.dview.sxeq.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,7 +34,7 @@ public class Role {
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "SXEQ_ROLE_RIGHT", joinColumns = { @JoinColumn(name = "ROLEID") }, inverseJoinColumns = { @JoinColumn(name = "RIGHTID") })
 	private List<Right> rights;
 	

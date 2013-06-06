@@ -9,7 +9,7 @@
 <!Doctype html>
 <html>
 	<head>
-		<title>用户列表</title>
+		<title>添加部门</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -31,7 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/addUser.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -90,7 +90,7 @@ body {
 							<li class="nav-header">
 								权限管理
 							</li>
-							<li  class="active">
+							<li>
 								<a href="Right_rightList">权限信息列表</a>
 							</li>
 							<li class="nav-header">
@@ -99,7 +99,7 @@ body {
 							<li>
 								<a href="Department_departmentList">部门列表</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="Department_addDepartment">添加部门</a>
 							</li>
 							<li class="nav-header">
@@ -116,44 +116,50 @@ body {
 				<div class="span9">
 					<div>
 						<h3>
-							所有权限信息
+							添加部门信息
 						</h3>
-					</div>
-					<div>
-						<table
-							class="table table-striped table-bordered table-condensed table-hover">
-							<tr>
-								<th>
-									权限名称
-								</th>
-								<th>
-									权限描述
-								</th>
-							</tr>
-
-							<s:iterator value="#request.rights" id="right">
-								<tr>
-									<td>
-										<s:property value="#right.rightName" />
-									</td>
-									<td>
-										<s:property value="#right.description" />
-									</td>
-								</tr>
-							</s:iterator>
-
-						</table>
+						<form class="form-horizontal" action="Department_addDepartment" method="post"
+							id="departmentForm">
+							<div class="control-group">
+								<label class="control-label" for="departmentName">
+									部门名称
+								</label>
+								<div class="controls">
+									<input type="text" id="departmentName" name="department.departmentName"
+										placeholder="部门名称"
+										>
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="loginId">
+									部门描述
+								</label>
+								<div class="controls">
+									<textarea rows="3" id="desciption" name="department.desciption"></textarea>
+									<span class="help-inline"></span>
+								</div>
+								</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary " id="departmentsubmit">
+										提交
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
+
 				<!--/span-->
 			</div>
-		</div>
-		<hr>
-		<footer>
-		<p>
-			© Company 2012
-		</p>
-		</footer>
+			<!--/row-->
+			<hr>
+			<footer>
+			<p>
+				© Company 2012
+			</p>
+			</footer>
 		</div>
 	</body>
 </html>

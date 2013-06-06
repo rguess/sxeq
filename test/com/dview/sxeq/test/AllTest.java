@@ -24,13 +24,13 @@ import com.dview.sxeq.util.LogUtil;
 
 public class AllTest {
 
-	ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
+	static ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
 			"classpath:beans.xml");
 	DepartmentDao departmentDao = context.getBean(DepartmentDao.class);
 	RightDao rightDao = context.getBean(RightDao.class);
 	RoleDao roleDao = context.getBean(RoleDao.class);
 	UserDao userDao = context.getBean(UserDao.class);
-	LogDao logDao = context.getBean(LogDao.class);
+	static LogDao logDao = context.getBean(LogDao.class);
 
 	@Test
 	public void test01() {
@@ -58,9 +58,9 @@ public class AllTest {
 	@Test
 	public void test03() {
 		Right right = new Right();
-		right.setRightName("删除日志");
-		right.setRightStr("/Log_deleteLog");
-		right.setDescription("删除日志权限");
+		right.setRightName("添加部门");
+		right.setRightStr("/Department_addDepartment");
+		right.setDescription("添加部门信息权限");
 		rightDao.add(right);
 	}
 	
@@ -165,10 +165,28 @@ public class AllTest {
 		System.out.println(logDao.count(null, null));
 	}
 	
+	@Test
+	public void test10(){
+		System.out.println(logDao.list("form Log where user.id =141").size());
+	}
+	
+	@Test
+	public void test11(){
+		User user = userDao.get(Long.valueOf("301"));
+		Role role = roleDao.get(Long.valueOf("62"));
+		System.out.println(role.getRights().size());
+		user.setRole(role);
+		userDao.update(user);
+//		System.out.println(user.getRole().getRights().size());
+	}
+	
 	
 	
 	public static void main(String[] args) {
-		System.out.println(LogUtil.getLogContent("userList"));
+//		System.out.println(LogUtil.getLogContent("userList"));
+		long id = 141;
+		System.out.println(logDao.list("from Log where user.id ="+id).size());
+		
 	}
 	
 	

@@ -46,8 +46,10 @@ body {
 					<a class="brand" href="#">管理子系统</a>
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
-							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="User_loginOut">login out</a>
+							欢迎，
+							<s:property value="#session.user.userName" />
+							&nbsp&nbsp&nbsp
+							<a href="User_loginOut">login out</a>
 						</p>
 						<ul class="nav">
 							<li class="active">
@@ -93,6 +95,15 @@ body {
 							</li>
 							<li>
 								<a href="Right_rightList">权限信息列表</a>
+							</li>
+							<li class="nav-header">
+								部门管理
+							</li>
+							<li>
+								<a href="Department_departmentList">部门列表</a>
+							</li>
+							<li>
+								<a href="Department_addDepartment">添加部门</a>
 							</li>
 							<li class="nav-header">
 								日志管理

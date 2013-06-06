@@ -240,6 +240,11 @@ public class ObjectDaoImpl<T, PK extends Serializable>
 		session.close();
 		return list;
 	}
+
+	public void deleteList(List<T> list) {
+
+		this.getHibernateTemplate().deleteAll(list);
+	}
 	
 
 }

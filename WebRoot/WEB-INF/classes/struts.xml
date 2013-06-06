@@ -54,6 +54,10 @@
 			<result name="logList">/jsp/log/logList.jsp</result>
 			<result name="logDeleteSuccess" type="redirectAction">Log_logList</result>
 			
+			<result name="deparList">/jsp/department/departmentList.jsp</result>
+			<result name="getAddDepartmentjsp">/jsp/department/addDepartment.jsp</result>
+			<result name="addDepartmentSuccess" type="redirectAction">Department_departmentList</result>
+			
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="loginInter">
 				<param name="excludeMethods">login,loginOut</param>

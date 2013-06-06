@@ -52,6 +52,7 @@ public class RoleAction extends ActionSupport {
 	public String roleList() {
 		ServletActionContext.getRequest().setAttribute("list",
 				roleManager.roleList());
+		ServletActionContext.getRequest().setAttribute("rights", rightManager.rightList());
 		return "roleList";
 	}
 	

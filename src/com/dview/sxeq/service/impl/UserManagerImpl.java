@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.dview.sxeq.dao.DepartmentDao;
+import com.dview.sxeq.dao.LogDao;
 import com.dview.sxeq.dao.RoleDao;
 import com.dview.sxeq.dao.UserDao;
 import com.dview.sxeq.model.Department;
+import com.dview.sxeq.model.Log;
 import com.dview.sxeq.model.Role;
 import com.dview.sxeq.model.User;
 import com.dview.sxeq.service.UserManager;
@@ -23,7 +25,17 @@ public class UserManagerImpl implements UserManager {
 	private UserDao userDao;
 	private DepartmentDao departmentDao;
 	private RoleDao roleDao;
+	private LogDao logDao;
 	
+	public LogDao getLogDao() {
+		return logDao;
+	}
+
+	@Autowired
+	public void setLogDao(LogDao logDao) {
+		this.logDao = logDao;
+	}
+
 	public DepartmentDao getDepartmentDao() {
 		return departmentDao;
 	}
@@ -105,10 +117,38 @@ public class UserManagerImpl implements UserManager {
 
 	public void deleteUser(Long id) {
 		User user = userDao.get(id);
+		List<Log> logs = logDao.list("from Log where user.id ="+user.getId());
+		logDao.deleteList(logs);
 		userDao.delete(user);
 	}
 
 	public User getUserById(Long id) {
 		return userDao.get(id);
+	}
+
+	/*
+	 * 检查loginId是否已存在，存在为true，不存在为false
+	 */
+	public boolean checkLoginIsExit(String loginId) {
+		List<User> list = userDao.list("from User where loginId = '"+loginId+"'");
+		if(list.size()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public void updateUser(User user, String departmentName, String roleName) {
+		
+		Department department = departmentDao.list("from Department where departmentName = '"+departmentName+"'").get(0);
+		Role role = roleDao.list("from Role where roleName = '"+roleName+"'").get(0);
+		user.setDepartment(department);
+		user.setRole(role);
+		User u = userDao.get(user.getId());
+		if("######".equals(user.getPassword())){
+			user.setPassword(u.getPassword());
+		}
+		user.setGenTime(u.getGenTime());
+		userDao.add(user);
 	}
 }

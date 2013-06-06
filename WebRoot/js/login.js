@@ -18,7 +18,6 @@ function checkLoginId(object){
 function checkUserIsExit(){
 	
 	var error = $.getParam("error");
-
 	if(error == "loginId"){
 		$("#NameError").parent().parent().addClass("error");
 		$("#NameError").html("用户名不存在！");

@@ -13,4 +13,6 @@ public interface UserManager {
 	public void addUser(User user,String departmentName,String roleName);
 	public void deleteUser(Long id);
 	public User getUserById(Long id);
+	public boolean checkLoginIsExit(String loginId);
+	public void updateUser(User user,String departmentName,String roleName);
 }

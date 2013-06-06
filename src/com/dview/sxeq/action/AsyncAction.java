@@ -18,6 +18,11 @@ import com.dview.sxeq.service.RoleManager;
 import com.dview.sxeq.service.UserManager;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 系统需要异步功能处理类
+ * @author renzp
+ *
+ */
 @SuppressWarnings("serial")
 @Component("asyncAction")
 @Scope(value = "prototype")
@@ -47,18 +52,61 @@ public class AsyncAction extends ActionSupport {
 	
 	private int length;
 	
+	/*
+	 * 根据ID删除日志
+	 */
+	public String deleteLogById(){
+		dataMap.clear();
+		logManager.deleteLog(id);
+		dataMap.put("message", "删除成功");
+		return "success";
+	}
+	
+	/*
+	 * 获取某用户的权限
+	 */
+	
+	public String userRightList(){
+		dataMap.clear();
+		Role role = roleManager.getRoleById(id);
+		if(null != role){
+			dataMap.put("rights", role.getRights());
+		}else{
+			dataMap.put("rights", "no");
+		}
+		return "success";
+	}
+	
+	/*
+	 * loginId是否存在,存在为true，不存在为false
+	 */
+	public String loginIdIsExit(){
+		dataMap.clear();
+		dataMap.put("isExit", userManager.checkLoginIsExit(user.getLoginId()));
+		return "success";
+	}
+	
+	/*
+	 * 日志条数
+	 */
 	public String getLogCount(){
 		dataMap.clear();
 		dataMap.put("count", logManager.count(null, null));
 		return "success";
 	}	
 	
+	/*
+	 * 获取日志内容(分页)
+	 */
 	public String getLogs(){
 		dataMap.clear();
 		dataMap.put("logs", logManager.listForPageByHql("from Log",offset,length));
 		return "success";
 	}
 	
+	/*
+	 * 根据ID获取用户
+	 */
 	public String getUserById() {
 		
 		dataMap.clear();
@@ -67,6 +115,9 @@ public class AsyncAction extends ActionSupport {
 		return "success";
 	}
 	
+	/*
+	 * 根据ID获取角色
+	 */
 	public String getRoleById(){
 		
 		dataMap.clear();
@@ -75,6 +126,9 @@ public class AsyncAction extends ActionSupport {
 		return "success";
 	}
 	
+	/*
+	 * 获取部门信息
+	 */
 	public String departmentList(){
 		
 		dataMap.clear();
@@ -83,12 +137,18 @@ public class AsyncAction extends ActionSupport {
 		return "success";
 	}
 	
+	/*
+	 * 获取角色信息
+	 */
 	public String roleList(){
 		dataMap.clear();
 		dataMap.put("roles", roleManager.roleList());
 		return "success";
 	}
 	
+	/*
+	 * 获取权限信息
+	 */
 	public String rightList(){
 		dataMap.clear();
 		dataMap.put("rights", rightManager.rightList());

@@ -21,15 +21,23 @@
 		<link href="<%=basePath%>/css/bootstrap-responsive.css"
 			rel="stylesheet">
 		<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
-
-.sidebar-nav {
-	padding: 9px 0;
-}
-</style>
+			body {
+				padding-top: 60px;
+				padding-bottom: 40px;
+			}
+			table{
+				table-layout:fixed ;
+			}
+			.sidebar-nav {
+				padding: 9px 0;
+			}
+			td{
+				width:60%;
+				overflow:hidden;
+			    white-space:nowrap;
+			    text-overflow:ellipsis;
+			}
+		</style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
@@ -45,9 +53,10 @@ body {
 					<a class="brand" href="#">管理子系统</a>
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
-							<a href="#" class="navbar-link" style="margin-right: 20px"
-								id="loginUsername"></a><a href="User_loginOut">login
-								out</a>
+							欢迎，
+							<s:property value="#session.user.userName" />
+							&nbsp&nbsp&nbsp
+							<a href="User_loginOut">login out</a>
 						</p>
 						<ul class="nav">
 							<li class="active">
@@ -95,6 +104,15 @@ body {
 								<a href="Right_rightList">权限信息列表</a>
 							</li>
 							<li class="nav-header">
+								部门管理
+							</li>
+							<li>
+								<a href="Department_departmentList">部门列表</a>
+							</li>
+							<li>
+								<a href="Department_addDepartment">添加部门</a>
+							</li>
+							<li class="nav-header">
 								日志管理
 							</li>
 							<li>
@@ -138,7 +156,7 @@ body {
 									<td>
 										<s:property value="#role.description" />
 									</td>
-									<td>
+									<td title="<s:iterator value="#role.rights" id="right"><s:property value="#right.rightName"/> </s:iterator>">
 										<s:iterator value="#role.rights" id="right">
 											<s:property value="#right.rightName"/>
 										</s:iterator>
@@ -194,11 +212,7 @@ body {
 								<label class="control-label" for="rights">
 									赋予权限
 								</label>
-								<div class="controls">
-									
-									<div id="Mrights">
-										<input type="checkbox" value="" name="rightId">
-									</div>
+								<div class="controls" id="rights">
 									<s:iterator value="#request.rights" id="right">
 									<s:checkbox name="rightId" fieldValue="%{#right.id}"></s:checkbox>
 									<s:property value="#right.rightName"/>
@@ -211,10 +225,10 @@ body {
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">
-						Close
+						关闭
 					</button>
 					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:document.roleForm.submit();">
-						Save changes
+						保存
 					</button>
 				</div>
 			</div>

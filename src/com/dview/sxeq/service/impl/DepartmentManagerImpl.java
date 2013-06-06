@@ -28,4 +28,8 @@ public class DepartmentManagerImpl implements DepartmentManager {
 		return departmentDao.list("from Department");
 	}
 
+	public void addDepartment(Department department) {
+		departmentDao.add(department);
+	}
+
 }

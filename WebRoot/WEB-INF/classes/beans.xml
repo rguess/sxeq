@@ -22,7 +22,7 @@
 
 	</bean>
 
-	<!--<aop:config>
+	<aop:config>
 		<aop:aspect id="log" ref="logService">
 			<aop:pointcut expression="execution(* com.dview.sxeq.service.impl.*.*(..))"
 				id="logPointCut" />
@@ -30,7 +30,7 @@
 		</aop:aspect>
 	</aop:config>
 
-	--><bean
+	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<value>classpath:jdbc.properties</value>

@@ -3,10 +3,19 @@ $(document).ready(function() {
 	inintPage();
 });
 
-function deleteLog(){
+function deleteLog(id){
 	if(!window.confirm("您确认要删除此用户吗？")){
 		return false;
+	}else{
+		$.ajax({
+			url : 'async/deleteLogById?id='+id,
+			type : 'GET',
+			success : function(data) {
+				inintPage();
+			}
+		});
 	}
+	return false;
 }
 
 function inintPage(){
@@ -39,10 +48,26 @@ function listLog(page_index, jq){
 					+item.user.userName+"</td><td>"
 					+item.content+"</td><td>"
 					+item.date+"</td><td>"
-					+item.remark+"</td><td>&nbsp<a onclick='javascript:deleteLog("
+					+item.remark+"</td><td>&nbsp<a href='javascript:void(0);' onclick='javascript:deleteLog("
 					+item.id+");'>删除</a></td></tr>";
 				$("#logContent").append(row);
 			});
 		}
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

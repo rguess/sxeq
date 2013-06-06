@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function initModal(id){
-	getRight();
+	setRights(id);
 	$.ajax({
 		url : 'async/getRoleById?id='+id,
 		type : 'GET',
@@ -17,19 +17,16 @@ function initModal(id){
 	});
 }
 
-//获取权限列表
-function getRight() {
-	$("#Mrights").empty();
+function setRights(roleId){
 	$.ajax({
-		url : 'async/rightList',
+		url : 'async/userRightList?id='+roleId,
 		type : 'GET',
-		success : function(data) {
-			var rights = data.rights;
-			$.each(rights,function(i,item){
-				$("#Mrights").append('<input type="checkbox" value="'+item.id+'" name="rightId">');
-				$("#Mrights").append(item.rightName);
-				$("#Mrights").append("<br/>");
+		success : function(meta) {
+			var userRights = meta.rights;
+			$("#rights input[value][id=rightId]").removeAttr("checked");
+			$.each(userRights,function(i,it){
+				$("#rights input[value="+it.id+"][id=rightId]").attr("checked","checked");
 			});
-		}
+	}
 	});
 }

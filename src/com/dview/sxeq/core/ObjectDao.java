@@ -28,4 +28,5 @@ public interface ObjectDao<T,PK extends Serializable> {
 	public List<Object[]> queryBySql(String sql);
 	public int countQueryBySql(String sql);
 	public List<T> getListByHql(String queryStr,int offset,int length);
+	public void deleteList(List<T> list);
 }

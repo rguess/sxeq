@@ -7,6 +7,7 @@ import com.dview.sxeq.model.Department;
 public interface DepartmentManager {
 
 	public List<Department> departmentList();
-	
-	
+
+	public void addDepartment(Department department);
+
 }
