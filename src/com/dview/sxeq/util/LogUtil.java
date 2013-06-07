@@ -17,10 +17,14 @@ public class LogUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String getLogContent(String methodName){
-		
+
 		String str = daopProperties.getProperty(methodName);
 		return str;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getLogContent("123"));
 	}
 }

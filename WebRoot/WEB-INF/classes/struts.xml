@@ -20,7 +20,7 @@
 	<constant name="struts.multipart.maxSize" value="20971520000" />
 
 	<package name="default" namespace="/" extends="struts-default">
-	
+		<!-- 拦截器定义-->
 		<interceptors>
 			<interceptor name="loginInter"
 				class="com.dview.sxeq.interceptor.LoginInterceptor">
@@ -28,12 +28,22 @@
 			<interceptor name="rightInter"
 				class="com.dview.sxeq.interceptor.RightInterceptor">
 			</interceptor>
-		</interceptors>
+		</interceptors><!--
 		
+		指定未匹配Action跳转 
+		<default-action-ref name="defaultAction" />
+		
+		--><!-- 全局跳转-->
 		<global-results>
 			<result name="noRight">/noright.jsp</result>
-		</global-results>
+		</global-results><!--
 		
+		 未匹配Action跳转
+		<action name="defaultAction">
+			<result>/exception.jsp</result>
+		</action>
+		
+		--><!-- 定义Action-->
 		<action name="*_*" class="com.dview.sxeq.action.{1}Action"
 			method="{2}">
 			<result name="userDeleteSuccess" type="redirectAction">User_userList</result>
@@ -68,6 +78,7 @@
 		</action>
 	</package>
 	
+	<!-- 异步专用处理命名空间-->
 	<package name="async" namespace="/async" extends="json-default">
 		
 		<action name="*" class="com.dview.sxeq.action.AsyncAction" method="{1}">
