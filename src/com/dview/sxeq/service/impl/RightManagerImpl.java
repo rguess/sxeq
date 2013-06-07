@@ -28,7 +28,7 @@ public class RightManagerImpl implements RightManager {
 	}
 
 	public List<Right> rightList() {
-		return rightDao.list("from Right");
+		return rightDao.list("from Right order by rightName desc");
 	}
 	
 }

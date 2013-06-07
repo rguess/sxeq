@@ -33,7 +33,6 @@ body {
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/department.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
@@ -149,7 +148,7 @@ body {
 										<s:property value="#department.desciption" />
 									</td>
 									<td>
-										<s:a href="Department_deleteDepartment?id=%{#department.id}">删除</s:a>
+										<s:a href="Department_deleteDepartment?department.id=%{#department.id}">删除</s:a>
 										<s:a href="#myModal" data-toggle='modal' onclick="initModal(%{#department.id})">修改</s:a>
 									</td>
 								</tr>
@@ -169,90 +168,30 @@ body {
 						×
 					</button>
 					<h3 id="myModalLabel">
-						修改用户信息
+						修改部门信息
 					</h3>
 				</div>
 				<div class="modal-body">
 					<div>
-						<form class="form-horizontal" action="User_updateUser" method="post"
-							id="staffform" enctype="multipart/form-data" name="userForm">
-							<input type="hidden" id="MUserId" name="user.id">
+						<form class="form-horizontal" action="Department_updateDepartment" method="post"
+							id="staffform" enctype="multipart/form-data" name="departmentForm">
+							<input type="hidden" id="MDepartmentId" name="department.id">
 							<div class="control-group">
-								<label class="control-label" for="MUserName">
-									姓名
+								<label class="control-label" for="MDepartmentName">
+									部门名称
 								</label>
 								<div class="controls">
-									<input type="text" id="MUserName" name="user.userName">
+									<input type="text" id="MDepartmentName" name="department.departmentName">
 									<span class="help-inline"></span>
 								</div>
 							</div>
+							
 							<div class="control-group">
-								<label class="control-label" for="MloginId">
-									登录名
+								<label class="control-label" for="Mdescription">
+									部门描述
 								</label>
 								<div class="controls">
-									<input type="text" id="MloginId" name="user.loginId"
-										readonly="readonly">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mpassword">
-									登录密码
-								</label>
-								<div class="controls">
-									<input type="password" id="Mpassword" name="user.password"
-										placeholder="密码">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mrepassword">
-									重复密码
-								</label>
-								<div class="controls">
-									<input type="password" id="Mrepassword" name="repassword"
-										placeholder="重复密码">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mdepartment">
-									部门
-								</label>
-								<div class="controls">
-									<select id="Mdepartment" name="departmentName">
-										
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mrole">
-									角色
-								</label>
-								<div class="controls">
-									<select id="Mrole" name="roleName">
-										
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Mphone">
-									联系方式(手机)
-								</label>
-								<div class="controls">
-									<input type="text" id="Mphone" name="user.mobile"
-										placeholder="phone">
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="Memail">
-									邮箱
-								</label>
-								<div class="controls">
-									<input type="text" id="Memail" name="user.email"
-										placeholder="email">
+									<textarea rows="3" id="Mdesciption" name="department.description" onblur="javascript:checkDesciption(this);"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -261,10 +200,10 @@ body {
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">
-						Close
+						关闭
 					</button>
-					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:document.userForm.submit();">
-						Save changes
+					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:departmentFormSubmit();;">
+						保存
 					</button>
 				</div>
 			</div>

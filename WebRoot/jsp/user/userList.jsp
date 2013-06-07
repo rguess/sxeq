@@ -18,8 +18,7 @@
 
 		<!-- Le styles -->
 		<link href="<%=basePath%>/css/bootstrap.css" rel="stylesheet">
-		<link href="<%=basePath%>/css/bootstrap-responsive.css"
-			rel="stylesheet">
+		<%--<link href="css/bootstrap-responsive.css" rel="stylesheet">--%>
 		<style type="text/css">
 body {
 	padding-top: 60px;
@@ -174,7 +173,7 @@ body {
 									</td>
 									<td>
 										<s:a href="User_deleteUser?id=%{#us.id}">删除</s:a>
-										<s:a href="#myModal" data-toggle='modal'
+										<s:a href="javascript:void(0)"
 											onclick="initModal(%{#us.id})">修改</s:a>
 									</td>
 								</tr>

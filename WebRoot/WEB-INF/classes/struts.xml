@@ -67,6 +67,7 @@
 			<result name="deparList">/jsp/department/departmentList.jsp</result>
 			<result name="getAddDepartmentjsp">/jsp/department/addDepartment.jsp</result>
 			<result name="addDepartmentSuccess" type="redirectAction">Department_departmentList</result>
+			<result name="departmentDeleteSuccess" type="redirectAction">Department_departmentList</result>
 			
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="loginInter">

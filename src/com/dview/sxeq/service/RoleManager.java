@@ -16,5 +16,7 @@ public interface RoleManager {
 	public void addRole(Role role);
 
 	public Role getRoleById(Long id);
+
+	public Object checkRoleNameIsExit(String roleName);
 	
 }

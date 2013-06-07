@@ -56,4 +56,13 @@ public class RoleManagerImpl implements RoleManager {
 		return roleDao.get(id);
 	}
 
+	public Object checkRoleNameIsExit(String roleName) {
+		List<Role> list = roleDao.list("from Role where roleName = '"+roleName+"'");
+		if(list.size()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

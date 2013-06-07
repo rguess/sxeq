@@ -58,9 +58,9 @@ public class AllTest {
 	@Test
 	public void test03() {
 		Right right = new Right();
-		right.setRightName("添加部门");
-		right.setRightStr("/Department_addDepartment");
-		right.setDescription("添加部门信息权限");
+		right.setRightName("删除部门");
+		right.setRightStr("/Department_deleteDepartment");
+		right.setDescription("删除部门信息权限");
 		rightDao.add(right);
 	}
 	

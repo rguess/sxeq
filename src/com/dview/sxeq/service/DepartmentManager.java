@@ -10,4 +10,8 @@ public interface DepartmentManager {
 
 	public void addDepartment(Department department);
 
+	public Object checkDepartmentNameIsExit(String name);
+
+	public void deleteDepartment(Long id);
+
 }

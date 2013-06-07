@@ -31,7 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/addUser.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/addDepartment.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
@@ -120,14 +120,14 @@ body {
 							添加部门信息
 						</h3>
 						<form class="form-horizontal" action="Department_addDepartment" method="post"
-							id="departmentForm">
+							id="departmentForm" onsubmit="return formValidate();">
 							<div class="control-group">
 								<label class="control-label" for="departmentName">
 									部门名称
 								</label>
 								<div class="controls">
 									<input type="text" id="departmentName" name="department.departmentName"
-										placeholder="部门名称"
+										placeholder="部门名称" onblur="javascript:checkDepartmentName(this);"
 										>
 									<span class="help-inline"></span>
 								</div>
@@ -137,7 +137,7 @@ body {
 									部门描述
 								</label>
 								<div class="controls">
-									<textarea rows="3" id="desciption" name="department.desciption"></textarea>
+									<textarea rows="3" id="desciption" name="department.desciption" onblur="javascript:checkDesciption(this);"></textarea>
 									<span class="help-inline"></span>
 								</div>
 								</div>

@@ -164,7 +164,7 @@
 									</td>
 									<td>
 										<s:a href="Role_deleteRole?id=%{#role.id}" onclick="javascript:return CheckRoleById(%{#role.id});">删除</s:a>
-										<s:a href="#myModal" data-toggle='modal' onclick="javascript:initModal(%{#role.id})">修改</s:a>
+										<s:a href="javascript:void(0);" onclick="javascript:initModal(%{#role.id})">修改</s:a>
 									</td>
 								</tr>
 							</s:iterator>
@@ -196,7 +196,7 @@
 									角色名
 								</label>
 								<div class="controls">
-									<input type="text" id="MRoleName" name="role.roleName">
+									<input type="text" id="MRoleName" name="role.roleName" readonly="readonly">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -205,7 +205,7 @@
 									角色描述
 								</label>
 								<div class="controls">
-									<textarea rows="3" id="Mdesciption" name="role.description"></textarea>
+									<textarea rows="3" id="Mdesciption" name="role.description" onblur="javascript:checkDesciption(this);"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -228,7 +228,7 @@
 					<button class="btn" data-dismiss="modal" aria-hidden="true">
 						关闭
 					</button>
-					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:document.roleForm.submit();">
+					<button class="btn btn-primary" id="staffsubmit" onclick="javascript:roleFormSubmit();">
 						保存
 					</button>
 				</div>

@@ -1,5 +1,6 @@
 package com.dview.sxeq.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,34 @@ public class AsyncAction extends ActionSupport {
 			}
 		}
 		dataMap.put("isRight", flag);
+		return "success";
+	}
+	
+	/*
+	 * 检测角色名是否存在
+	 * 
+	 */
+	public String roleNameIsExit(){
+		dataMap.clear();
+		try {
+			String name = new String(roleName.getBytes("iso-8859-1"),"utf-8");
+			dataMap.put("isExit", roleManager.checkRoleNameIsExit(name));
+			return "success";
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String departmentNameIsExit(){
+		dataMap.clear();
+		try {
+			String name = new String(departmentName.getBytes("iso-8859-1"),"utf-8");
+			dataMap.put("isExit", departmentManager.checkDepartmentNameIsExit(name));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return "success";
 	}
 	
