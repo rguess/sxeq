@@ -47,7 +47,7 @@ body {
 							欢迎，
 							<s:property value="#session.user.userName" />
 							&nbsp&nbsp&nbsp
-							<a href="User_loginOut">login out</a>
+							<a href="User_loginOut">退出</a>
 						</p>
 						<ul class="nav">
 							<li class="active">
@@ -151,6 +151,7 @@ body {
 									<s:property value="#right.rightName"/>
 										<br/>
 									</s:iterator>
+									<span class="help-inline" id="checkError"></span>
 								</div>
 							</div>
 

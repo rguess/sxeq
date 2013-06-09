@@ -6,6 +6,7 @@ $(document).ready(function() {
 function formValidate() {
 	
 	var flag = true;
+	
 	if("" == $.trim($("#roleName").val())){
 		$("#roleName").parent().parent().addClass("error");
 		$("#roleName").next().html("角色名不能为空");
@@ -26,6 +27,11 @@ function formValidate() {
 	}else{
 		$("#desciption").parent().parent().removeClass("error");
 		$("#desciption").next().html("");
+	}
+	
+	if($("input[name=rightId][id=rightId]:checked").length == 0){
+		alert("请选择权限");
+		flag = false;
 	}
 	return flag;
 	
@@ -56,6 +62,7 @@ function checkDesciption(object) {
 		$(object).next().html("");
 	}
 }
+
 
 function checkRoleIsExist(roleName){
 	var flag = true;

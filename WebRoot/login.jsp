@@ -12,7 +12,7 @@
 
 		<link href="css/bootstrap.css" rel="stylesheet">
 		
-		<%--<link href="css/bootstrap-responsive.css" rel="stylesheet">--%>
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
 		
 		<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 	
@@ -27,7 +27,7 @@
 					<form class="form-horizontal" action="User_login" method="post">
 						<div class="control-group">
 							<label class="control-label" for="inputLoginId">
-								LoginId
+								用户名
 							</label>
 							<div class="controls">
 								<input type="text" id="loginId" name="user.loginId" placeholder="loginId">
@@ -37,7 +37,7 @@
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="inputPassword">
-								Password
+								密码
 							</label>
 							<div class="controls">
 								<input type="password" id="password" name="user.password"
