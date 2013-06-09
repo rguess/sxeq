@@ -7,7 +7,7 @@ function formValidate() {
 	
 	var flag = true;
 	
-	if(null == $("#departmentName").val() || "" == $("#departmentName").val().trim()){
+	if("" == $.trim($("#departmentName").val())){
 		$("#departmentName").parent().parent().addClass("error");
 		$("#departmentName").next().html("部门名称不能为空");
 		flag = false;
@@ -20,7 +20,7 @@ function formValidate() {
 		$("#departmentName").next().html("");
 	}
 	
-	if(null == $("#desciption").val() || "" == $("#desciption").val().trim()){
+	if("" == $.trim($("#desciption").val())){
 		$("#desciption").parent().parent().addClass("error");
 		$("#desciption").next().html("描述不能为空");
 		flag = false;
@@ -36,7 +36,7 @@ function formValidate() {
 //验证部门名称
 function checkDepartmentName(object){
 
-	if(null == $(object).val() || "" == $(object).val().trim()){
+	if("" == $.trim($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("部门名称不能为空");
 	}else if(checkDepartmentIsExist($(object).val())){
@@ -51,7 +51,7 @@ function checkDepartmentName(object){
 //验证描述
 function checkDesciption(object) {
 	
-	if(null == $(object).val() || "" == $(object).val().trim()){
+	if("" == $.trim($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("描述不能为空");
 	}else{

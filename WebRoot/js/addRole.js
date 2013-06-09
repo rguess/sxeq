@@ -6,7 +6,7 @@ $(document).ready(function() {
 function formValidate() {
 	
 	var flag = true;
-	if(null == $("#roleName").val() || "" == $("#roleName").val().trim()){
+	if("" == $.trim($("#roleName").val())){
 		$("#roleName").parent().parent().addClass("error");
 		$("#roleName").next().html("角色名不能为空");
 		flag = false;
@@ -19,7 +19,7 @@ function formValidate() {
 		$("#roleName").next().html("");
 	}
 	
-	if(null == $("#desciption").val() || "" == $("#desciption").val().trim()){
+	if("" == $.trim($("#desciption").val())){
 		$("#desciption").parent().parent().addClass("error");
 		$("#desciption").next().html("描述不能为空");
 		flag = false;
@@ -27,15 +27,13 @@ function formValidate() {
 		$("#desciption").parent().parent().removeClass("error");
 		$("#desciption").next().html("");
 	}
-	
 	return flag;
 	
 }
 
 //验证角色名
 function checkRoleName(object){
-
-	if(null == $(object).val() || "" == $(object).val()){
+	if("" == $.trim($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("角色名不能为空");
 	}else if(checkRoleIsExist($(object).val())){
@@ -50,7 +48,7 @@ function checkRoleName(object){
 //验证描述
 function checkDesciption(object) {
 	
-	if(null == $(object).val() || "" == $(object).val()){
+	if("" == $.trim($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("描述不能为空");
 	}else{

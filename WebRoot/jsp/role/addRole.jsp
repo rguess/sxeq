@@ -31,7 +31,7 @@ body {
 }
 </style>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/js/addRole.js" charset="utf-8"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/addRole.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
@@ -120,7 +120,7 @@ body {
 							添加角色信息
 						</h3>
 						<form class="form-horizontal" action="Role_addRole" method="post"
-							id="roleForm" onsubmit="return formValidate();">
+							id="roleForm" onsubmit="javascript:return formValidate();">
 							<div class="control-group">
 								<label class="control-label" for="roleName">
 									角色名称

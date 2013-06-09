@@ -14,7 +14,7 @@ function formValidate() {
 	
 	var flag = true;
 	
-	if(null == $("#Mdesciption").val() || "" == $("#Mdesciption").val().trim()){
+	if("" == $.trim($("#Mdesciption").val())){
 		$("#Mdesciption").parent().parent().addClass("error");
 		$("#Mdesciption").next().html("描述不能为空");
 		flag = false;
@@ -30,7 +30,7 @@ function formValidate() {
 //验证描述
 function checkDesciption(object) {
 	
-	if(null == $(object).val() || "" == $(object).val().trim()){
+	if("" == $.trim($(object).val())){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("描述不能为空");
 	}else{
