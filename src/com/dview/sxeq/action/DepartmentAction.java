@@ -60,4 +60,9 @@ public class DepartmentAction extends ActionSupport {
 		departmentManager.deleteDepartment(department.getId());
 		return "departmentDeleteSuccess";
 	}
+	
+	public String updateDepartment(){
+		departmentManager.addDepartment(department);
+		return "addDepartmentSuccess";
+	}
 }

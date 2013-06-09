@@ -297,12 +297,11 @@ body {
 			</div>
 			<!--/span-->
 		</div>
-		<hr>
+	</body>
+	<hr>
 		<footer>
 		<p>
-			© Company 2012
+			© 数字空间2013
 		</p>
 		</footer>
-		</div>
-	</body>
 </html>

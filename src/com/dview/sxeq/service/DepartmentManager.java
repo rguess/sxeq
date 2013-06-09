@@ -14,4 +14,6 @@ public interface DepartmentManager {
 
 	public void deleteDepartment(Long id);
 
+	public Department getDepartmentById(Long id);
+
 }

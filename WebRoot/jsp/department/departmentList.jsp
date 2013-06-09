@@ -33,6 +33,7 @@ body {
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootstrap.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/bootbox.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/departmentList.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/checkRight.js"></script>
 	</head>
 	<body>
@@ -118,8 +119,8 @@ body {
 				<!--/span-->
 				<div class="span9">
 					<div>
-						<span><a class="btn btn-success" href="User_addUser";>
-								添加用户 </a> </span>
+						<span><a class="btn btn-success" href="Department_addDepartment";>
+								添加部门 </a> </span>
 					</div>
 					<br>
 					<br>
@@ -148,8 +149,8 @@ body {
 										<s:property value="#department.desciption" />
 									</td>
 									<td>
-										<s:a href="Department_deleteDepartment?department.id=%{#department.id}">删除</s:a>
-										<s:a href="#myModal" data-toggle='modal' onclick="initModal(%{#department.id})">修改</s:a>
+										<s:a href="Department_deleteDepartment?department.id=%{#department.id}" onclick="return CheckDepartmentById(%{#department.id});">删除</s:a>
+										<s:a href="javascript:void(0);" onclick="initModal(%{#department.id})">修改</s:a>
 									</td>
 								</tr>
 							</s:iterator>
@@ -181,7 +182,7 @@ body {
 									部门名称
 								</label>
 								<div class="controls">
-									<input type="text" id="MDepartmentName" name="department.departmentName">
+									<input type="text" id="MDepartmentName" name="department.departmentName" readonly="readonly">
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -191,7 +192,7 @@ body {
 									部门描述
 								</label>
 								<div class="controls">
-									<textarea rows="3" id="Mdesciption" name="department.description" onblur="javascript:checkDesciption(this);"></textarea>
+									<textarea rows="3" id="Mdesciption" name="department.desciption" onblur="javascript:checkDesciption(this);"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>

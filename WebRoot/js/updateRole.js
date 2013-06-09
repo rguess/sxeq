@@ -42,6 +42,9 @@ function checkDesciption(object) {
 //根据角色ID判断该角色是否被用户占用,true:占用，false:未占用
 function CheckRoleById(id){
 	var flag = true;
+	if(!checkRight1("/Role_deleteRole")){
+		return false;
+	}
 	$.ajax({
 		url : 'async/checkRole?id='+id,
 		type : 'GET',
@@ -56,13 +59,12 @@ function CheckRoleById(id){
 			}
 		}
 	});
-	
 	return flag;
 }
 
 function initModal(id){
 	
-	if(!checkRight1()){
+	if(!checkRight1("/Role_updateRole")){
 		return;
 	}
 	$("#myModal").modal();
@@ -95,10 +97,10 @@ function setRights(roleId){
 }
 
 //检查权限
-function checkRight1(){
+function checkRight1(rightStr){
 	var flag = true
 	$.ajax({
-		url : 'async/checkRight?rightStr=/Role_updateRole',
+		url : 'async/checkRight?rightStr='+rightStr,
 		type : 'GET',
 		async:false,
 		success : function(data) {

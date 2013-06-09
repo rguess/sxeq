@@ -2,41 +2,90 @@ $(document).ready(function() {
 	
 });
 
-function userFormSubmit(){
+function departmentFormSubmit(){
 	if(formValidate()){
-		document.userForm.submit();
+		document.departmentForm.submit();
 	}
+}
+
+
+//根据角色ID判断该角色是否被用户占用,true:占用，false:未占用
+function CheckDepartmentById(id){
+	if(!checkRight1("/Department_deleteDepartment")){
+		return false;
+	}
+	var flag = true;
+	$.ajax({
+		url : 'async/checkDepartment?id='+id,
+		type : 'GET',
+		async:false,
+		success : function(data) {
+			var is = data.is;
+			if(is){
+				alert("该部门有人，不能直接删除！");
+				flag = false;
+			}else{
+				flag = true;
+			}
+		}
+	});
+	
+	return flag;
+}
+
+//提交前验证表单
+function formValidate() {
+	
+	var flag = true;
+	
+	if(null == $("#Mdesciption").val() || "" == $("#Mdesciption").val().trim()){
+		$("#Mdesciption").parent().parent().addClass("error");
+		$("#Mdesciption").next().html("描述不能为空");
+		flag = false;
+	}else{
+		$("#Mdesciption").parent().parent().removeClass("error");
+		$("#Mdesciption").next().html("");
+	}
+	
+	return flag;
+	
 }
 
 function initModal(id){
 	
-	if(!checkRight1()){
+	if(!checkRight1("/Department_updateDepartment")){
 		return;
 	}
 	$("#myModal").modal();
-	getDepartment();
-	getRole();
 	$.ajax({
-		url : 'async/getUserById?id='+id,
+		url : 'async/getDepartmentById?id='+id,
 		type : 'GET',
 		success : function(data) {
-			var user = data.user;
-			$("#MUserId").val(user.id);
-			$("#MUserName").val(user.userName);
-			$("#MloginId").val(user.loginId);
-			$("#Mpassword").val("######");
-			$("#Mrepassword").val("######");
-			$("#Mphone").val(user.mobile);
-			$("#Memail").val(user.email);
+			var department = data.department;
+			$("#MDepartmentId").val(department.id);
+			$("#MDepartmentName").val(department.departmentName);
+			$("#Mdesciption").val(department.desciption);
 		}
 	});
 }
 
+//验证描述
+function checkDesciption(object) {
+	
+	if(null == $(object).val() || "" == $(object).val().trim()){
+		$(object).parent().parent().addClass("error");
+		$(object).next().html("描述不能为空");
+	}else{
+		$(object).parent().parent().removeClass("error");
+		$(object).next().html("");
+	}
+}
+
 //检查权限
-function checkRight1(){
+function checkRight1(rightStr){
 	var flag = true
 	$.ajax({
-		url : 'async/checkRight?rightStr=/User_updateUser',
+		url : 'async/checkRight?rightStr='+rightStr,
 		type : 'GET',
 		async:false,
 		success : function(data) {

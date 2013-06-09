@@ -1,5 +1,7 @@
 package com.dview.sxeq.action;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.dview.sxeq.dao.LogDao;
+import com.dview.sxeq.model.Log;
 import com.dview.sxeq.model.User;
 import com.dview.sxeq.service.DepartmentManager;
 import com.dview.sxeq.service.RoleManager;
@@ -31,6 +35,8 @@ public class UserAction extends ActionSupport {
 	private String roleName;
 	
 	private Long id;
+	
+	private LogDao logDao;
 
 	public String login() {
 
@@ -45,9 +51,17 @@ public class UserAction extends ActionSupport {
 	public String loginOut(){
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User) request.getSession().getAttribute("user");
 		request.getSession().removeAttribute("user");
 		request.removeAttribute("msg");
 		request.getSession().removeAttribute("msg");
+		
+		Log log = new Log();
+		log.setContent("退出系统");
+		log.setDate(new Date());
+		log.setRemark(user.getUserName()+"退出系统");
+		log.setUser(user);
+		logDao.add(log);
 		return "loginOutSuccess";
 		
 	}
@@ -140,4 +154,14 @@ public class UserAction extends ActionSupport {
 	public void setRoleManager(RoleManager roleManager) {
 		this.roleManager = roleManager;
 	}
+
+	public LogDao getLogDao() {
+		return logDao;
+	}
+
+	@Autowired
+	public void setLogDao(LogDao logDao) {
+		this.logDao = logDao;
+	}
+	
 }

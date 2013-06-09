@@ -6,7 +6,6 @@ $(document).ready(function() {
 	
 	$("a[href=Role_roleList]").click({name:"/Role_roleList"},checkRight);
 	$("a[href=Role_addRole]").click({name:"/Role_addRole"},checkRight);
-	$("a[href^=Role_deleteRole]").click({name:"/Role_deleteRole"},checkRight);
 	
 	$("a[href=Right_rightList]").click({name:"/Right_rightList"},checkRight);
 	
@@ -14,6 +13,7 @@ $(document).ready(function() {
 	$("a[href=Department_addDepartment]").click({name:"/Department_addDepartment"},checkRight);
 	
 	$("a[href=Log_logList]").click({name:"/Log_logList"},checkRight);
+	$("a[href=Log_exportLog]").click({name:"/Log_exportLog"},checkRight);
 	
 });
 

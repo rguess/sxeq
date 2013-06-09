@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.dview.sxeq.dao.DepartmentDao;
 import com.dview.sxeq.model.Department;
-import com.dview.sxeq.model.Role;
 import com.dview.sxeq.service.DepartmentManager;
 
 @Component
@@ -45,6 +44,11 @@ public class DepartmentManagerImpl implements DepartmentManager {
 	public void deleteDepartment(Long id) {
 		Department department = departmentDao.get(id);
 		departmentDao.delete(department);
+	}
+
+	public Department getDepartmentById(Long id) {
+		
+		return departmentDao.get(id);
 	}
 
 }

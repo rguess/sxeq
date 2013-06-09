@@ -163,4 +163,13 @@ public class UserManagerImpl implements UserManager {
 			return true;
 		}
 	}
+
+	public boolean getUserByDepartmentId(Long id) {
+		List<User> list = userDao.list("from User where department.id = "+id+"");
+		if(list.size() == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }

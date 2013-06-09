@@ -89,6 +89,7 @@ public class AsyncAction extends ActionSupport {
 		return null;
 	}
 	
+	//检测部门名称是否存在
 	public String departmentNameIsExit(){
 		dataMap.clear();
 		try {
@@ -107,6 +108,12 @@ public class AsyncAction extends ActionSupport {
 		
 		dataMap.clear();
 		dataMap.put("is", userManager.getUserByRoleId(id));
+		return "success";
+	}
+	
+	public String checkDepartment(){
+		dataMap.clear();
+		dataMap.put("is", userManager.getUserByDepartmentId(id));
 		return "success";
 	}
 	
@@ -181,6 +188,16 @@ public class AsyncAction extends ActionSupport {
 		dataMap.clear();
 		Role role = roleManager.getRoleById(id);
 		dataMap.put("role", role);
+		return "success";
+	}
+	
+	/*
+	 * 根据ID获取部门
+	 */
+	public String getDepartmentById(){
+		dataMap.clear();
+		Department department = departmentManager.getDepartmentById(id);
+		dataMap.put("department", department);
 		return "success";
 	}
 	

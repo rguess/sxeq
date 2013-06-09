@@ -9,7 +9,8 @@
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
+		value="true" />
 	<!--
 		是否是开发模式
 	-->
@@ -20,6 +21,7 @@
 	<constant name="struts.multipart.maxSize" value="20971520000" />
 
 	<package name="default" namespace="/" extends="struts-default">
+
 		<!-- 拦截器定义-->
 		<interceptors>
 			<interceptor name="loginInter"
@@ -28,24 +30,33 @@
 			<interceptor name="rightInter"
 				class="com.dview.sxeq.interceptor.RightInterceptor">
 			</interceptor>
-		</interceptors><!--
-		
-		指定未匹配Action跳转 
-		<default-action-ref name="defaultAction" />
-		
-		--><!-- 全局跳转-->
+			<interceptor-stack name="myIterceptor">
+				<interceptor-ref name="loginInter">
+					<param name="excludeMethods">login,loginOut</param>
+				</interceptor-ref>
+				<interceptor-ref name="rightInter">
+					<param name="excludeMethods">login,loginOut</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 定义默认拦截器及默认Action-->
+		<default-interceptor-ref name="myIterceptor" />
+		<default-action-ref name="default" />
+
+		<!-- 全局跳转-->
 		<global-results>
 			<result name="noRight">/noright.jsp</result>
-		</global-results><!--
-		
-		 未匹配Action跳转
-		<action name="defaultAction">
+		</global-results>
+
+		<!-- 定义Action-->
+		<action name="default">
 			<result>/exception.jsp</result>
 		</action>
 		
-		--><!-- 定义Action-->
-		<action name="*_*" class="com.dview.sxeq.action.{1}Action"
-			method="{2}">
+		<action name="User_*" class="com.dview.sxeq.action.UserAction"
+			method="{1}">
 			<result name="userDeleteSuccess" type="redirectAction">User_userList</result>
 			<result name="addUserSuccess" type="redirectAction">User_userList</result>
 			<result name="getAddUserjsp">/jsp/user/addUser.jsp</result>
@@ -53,43 +64,50 @@
 			<result name="login_fail">/login.jsp</result>
 			<result name="login_success" type="redirectAction">User_userList</result>
 			<result name="loginOutSuccess" type="redirect">/login.jsp</result>
-			
+		</action>
+
+		<action name="Role_*" class="com.dview.sxeq.action.RoleAction"
+			method="{1}">
 			<result name="getAddRolejsp">/jsp/role/addRole.jsp</result>
 			<result name="roleList">/jsp/role/roleList.jsp</result>
 			<result name="roleDeleteSuccess" type="redirectAction">Role_roleList</result>
 			<result name="addRoleSuccess" type="redirectAction">Role_roleList</result>
-			
+		</action>
+
+		<action name="Right_*" class="com.dview.sxeq.action.RightAction"
+			method="{1}">
 			<result name="rightList">/jsp/right/rightList.jsp</result>
-			
+		</action>
+
+		<action name="Log_*" class="com.dview.sxeq.action.LogAction"
+			method="{1}">
 			<result name="logList">/jsp/log/logList.jsp</result>
 			<result name="logDeleteSuccess" type="redirectAction">Log_logList</result>
-			
+		</action>
+
+		<action name="Department_*" class="com.dview.sxeq.action.DepartmentAction"
+			method="{1}">
 			<result name="deparList">/jsp/department/departmentList.jsp</result>
 			<result name="getAddDepartmentjsp">/jsp/department/addDepartment.jsp</result>
-			<result name="addDepartmentSuccess" type="redirectAction">Department_departmentList</result>
-			<result name="departmentDeleteSuccess" type="redirectAction">Department_departmentList</result>
-			
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="loginInter">
-				<param name="excludeMethods">login,loginOut</param>
-			</interceptor-ref>
-			<interceptor-ref name="rightInter" >
-				<param name="excludeMethods">login,loginOut</param>
-			</interceptor-ref>
+			<result name="addDepartmentSuccess" type="redirectAction">Department_departmentList
+			</result>
+			<result name="departmentDeleteSuccess" type="redirectAction">Department_departmentList
+			</result>
 		</action>
 	</package>
-	
+
 	<!-- 异步专用处理命名空间-->
 	<package name="async" namespace="/async" extends="json-default">
 		
-		<action name="*" class="com.dview.sxeq.action.AsyncAction" method="{1}">
-			<result name="success" type="json" >
+		<action name="*" class="com.dview.sxeq.action.AsyncAction"
+			method="{1}">
+			<result name="success" type="json">
 				<param name="root">dataMap</param>
 			</result>
 			<result name="noRight" type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>
-	
+
 	</package>
 </struts>

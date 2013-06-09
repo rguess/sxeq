@@ -24,7 +24,7 @@
 
 	<aop:config>
 		<aop:aspect id="log" ref="logService">
-			<aop:pointcut expression="execution(* com.dview.sxeq.service.impl.*.*(..))"
+			<aop:pointcut expression="execution(* com.dview.sxeq.action.*.*(..))"
 				id="logPointCut" />
 			<aop:after method="logAll" pointcut-ref="logPointCut" />
 		</aop:aspect>

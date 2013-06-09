@@ -93,17 +93,6 @@ public class RoleAction extends ActionSupport {
 		return "roleDeleteSuccess";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public Role getRole() {
 		return role;
 	}

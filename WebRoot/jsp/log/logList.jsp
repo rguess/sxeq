@@ -149,6 +149,8 @@ body {
 
 							</tbody>
 						</table>
+						<a class="btn btn-info" href="Log_exportLog">
+								导出全部 </a>
 						<div id="Pagination" class="pagination"
 							style="float: right; margin-right: 100px"></div>
 					</div>

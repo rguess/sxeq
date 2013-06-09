@@ -58,9 +58,9 @@ public class AllTest {
 	@Test
 	public void test03() {
 		Right right = new Right();
-		right.setRightName("删除部门");
-		right.setRightStr("/Department_deleteDepartment");
-		right.setDescription("删除部门信息权限");
+		right.setRightName("导出日志");
+		right.setRightStr("/Log_exportLog");
+		right.setDescription("导出日志权限");
 		rightDao.add(right);
 	}
 	
@@ -81,7 +81,7 @@ public class AllTest {
 		user.setLoginId("admin");
 		user.setMobile("1523212311");
 		user.setPassword(toMD5("admin123"));
-		Role role = roleDao.get(Long.valueOf("1"));
+		Role role = roleDao.get(Long.valueOf("41"));
 		System.out.println(role.getRoleName());
 		user.setRole(role);
 		user.setUserName("张三");
@@ -186,6 +186,12 @@ public class AllTest {
 		for(User user : list){
 			System.out.println(user.getPassword());
 		}
+	}
+	
+	@Test
+	public void test13(){
+		String str = "/asdas/asdasdqw";
+		System.out.println(str.matches("*"));
 	}
 	
 	

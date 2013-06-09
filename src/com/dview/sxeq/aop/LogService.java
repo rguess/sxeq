@@ -36,7 +36,6 @@ public class LogService {
 			log.setRemark(user.getUserName()+content);
 			log.setUser(user);
 			logDao.add(log);
-			log.setRemark(user.getUserName()+content);
 		}
 	}
 }
