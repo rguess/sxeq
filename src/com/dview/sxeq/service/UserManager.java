@@ -17,4 +17,5 @@ public interface UserManager {
 	public void updateUser(User user,String departmentName,String roleName);
 	public boolean getUserByRoleId(Long id);
 	public boolean getUserByDepartmentId(Long id);
+	public User getUserByLoginId(String loginId);
 }

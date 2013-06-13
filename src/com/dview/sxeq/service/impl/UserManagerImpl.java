@@ -172,4 +172,14 @@ public class UserManagerImpl implements UserManager {
 			return true;
 		}
 	}
+
+	public User getUserByLoginId(String loginId) {
+		
+		List<User> users = userDao.list("from User where loginId = '"+loginId+"'");
+		if(users.size()>0){
+			return users.get(0);
+		}else{
+			return null;
+		}
+	}
 }

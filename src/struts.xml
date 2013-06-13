@@ -42,7 +42,7 @@
 		</interceptors>
 
 		<!-- 定义默认拦截器及默认Action-->
-		<default-interceptor-ref name="myIterceptor" />
+		<!--<default-interceptor-ref name="myIterceptor" />-->
 		<default-action-ref name="default" />
 
 		<!-- 全局跳转-->
@@ -73,6 +73,7 @@
 			<result name="login_fail" type="redirect">/login.jsp</result>
 			<result name="login_success" type="redirectAction">User_userList</result>
 			<result name="loginOutSuccess" type="redirect">/login.jsp</result>
+			<interceptor-ref name="myIterceptor" />
 		</action>
 
 		<action name="Role_*" class="com.dview.sxeq.action.RoleAction"
@@ -81,17 +82,20 @@
 			<result name="roleList">/jsp/role/roleList.jsp</result>
 			<result name="roleDeleteSuccess" type="redirectAction">Role_roleList</result>
 			<result name="addRoleSuccess" type="redirectAction">Role_roleList</result>
+			<interceptor-ref name="myIterceptor" />
 		</action>
 
 		<action name="Right_*" class="com.dview.sxeq.action.RightAction"
 			method="{1}">
 			<result name="rightList">/jsp/right/rightList.jsp</result>
+			<interceptor-ref name="myIterceptor" />
 		</action>
 
 		<action name="Log_*" class="com.dview.sxeq.action.LogAction"
 			method="{1}">
 			<result name="logList">/jsp/log/logList.jsp</result>
 			<result name="logDeleteSuccess" type="redirectAction">Log_logList</result>
+			<interceptor-ref name="myIterceptor" />
 		</action>
 
 		<action name="Department_*" class="com.dview.sxeq.action.DepartmentAction"
@@ -102,6 +106,7 @@
 			</result>
 			<result name="departmentDeleteSuccess" type="redirectAction">Department_departmentList
 			</result>
+			<interceptor-ref name="myIterceptor" />
 		</action>
 	</package>
 

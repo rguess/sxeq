@@ -44,6 +44,13 @@ public class UserAction extends ActionSupport {
 		if (result.equals("login_fail")) {
 			ServletActionContext.getRequest().getSession().setAttribute("msg",
 					"账号密码出错,请从新登录！");
+		}else{
+			Log log = new Log();
+			log.setContent("登录系统");
+			log.setDate(new Date());
+			log.setRemark(user.getUserName()+"退入系统");
+			log.setUser(userManager.getUserByLoginId(user.getLoginId()));
+			logDao.add(log);
 		}
 		return result;
 	}

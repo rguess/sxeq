@@ -5,7 +5,7 @@ $(document).ready(function() {
 //提交前验证表单
 function formValidate() {
 	var flag = true;
-	if($("#userName").val().length>4 || $("#userName").val().length<2){
+	if($.trim($("#userName").val()).length>4 || $.trim($("#userName").val()).length<2){
 		$("#userName").parent().parent().addClass("error");
 		$("#userName").next().html("长度在2到4之间");
 		flag = false;
@@ -73,7 +73,7 @@ function formValidate() {
 //验证用户名字
 function checkUserName(object){
 	
-	if($(object).val().length>4 || $(object).val().length<2){
+	if($.trim($(object).val()).length>4 || $.trim($(object).val()).length<2){
 		$(object).parent().parent().addClass("error");
 		$(object).next().html("长度在2到4之间");
 	}else{
